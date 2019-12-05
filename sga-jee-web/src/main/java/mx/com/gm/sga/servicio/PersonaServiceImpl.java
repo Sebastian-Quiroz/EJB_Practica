@@ -20,8 +20,8 @@ public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService{
     @Override
     public ArrayList<Persona> listarPersonas() {
         ArrayList<Persona> personas = new ArrayList<>();
-        personas.add(new Persona(1, "Sebastian", "Quiroz", "se@hotmail.com", "555-55-55"));
-        personas.add(new Persona(2, "Adriana", "Mora", "adri@gmail.com", "777-777-77"));
+        personas.add(new Persona("Sebastian", "Quiroz", "se@hotmail.com", "555-55-55"));
+        personas.add(new Persona("Adriana", "Mora", "adri@gmail.com", "777-777-77"));
         return personas;
     }
 

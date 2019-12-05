@@ -6,26 +6,30 @@
 package mx.com.gm.sga.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-/**
- *
- * @author ADMIN
- */
-public class Persona implements Serializable {
-
+@Entity
+public class Persona implements Serializable{
     private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_persona")
     private int idPersona;
+    
     private String nombre;
     private String apellido;
     private String email;
     private String telefono;
-
-    public Persona() {
-
+    
+    public Persona(){
     }
 
-    public Persona(int idPersona, String nombre, String apellido, String email, String telefono) {
-        this.idPersona = idPersona;
+    public Persona(String nombre, String apellido, String email, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -74,7 +78,8 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apePaterno=" + apellido + ", email=" + email + ", telefono=" + telefono + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + '}';
     }
-
+    
+    
 }
