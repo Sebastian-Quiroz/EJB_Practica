@@ -3,8 +3,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
     http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd" version="2.2">
-
-    <persistence-unit name="PersonaPU" transaction-type="RESOURCE_LOCAL">
+        
+    <!-- el nombre jdbc/PersonaDb es una JDBC-SOuRCE
+    configurado en el servidor de Glassfish en la seccion de 
+    JDBC/Jdbc-Resource y conectado con el JDBC-CONNECTION-POOl creado
+    para tener la conexion de la base de datos    -->
+    
+    <persistence-unit name="PersonaPU" transaction-type="JTA">
+        <jta-data-source>jdbc/PersonaDb</jta-data-source>
+                <!-- Crea una relacion con el EJB Persona.java permite la relacion entre @Entity y 
+        @EntityManager
+        
+        ** SE CAMBIA LA FORMA DE TRANCCION DE LOCAL A JTA
+        ** Esto era para configuracion Local
         <class>mx.com.gm.sga.domain.Persona</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC" />
@@ -14,5 +25,6 @@
             <property name="eclipselink.logging.level.sql" value="FINE" />
             <property name="eclipselink.loggin.parameters" value="true" />
         </properties>
+        -->
     </persistence-unit>
 </persistence>

@@ -11,8 +11,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+/*
+Se agrega un Query para agregar todos los objetos tipo personas
+-- se le asigna el nombre en este caso Persona.findAll
+--  Recordar que aca se esta usando JPQL y no SQL por eso se estan recuperando
+    son objetos y no columnas
+-- p hace referencia a un alias que le asignamos
+-- se agrega la notacion @table para identficar a que tabla pertenece exactamente
+*/
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Persona.findAll", 
+            query = "SELECT p FROM Persona p ORDER BY p.idPersona")
+})
+@Table(name = "persona")
 public class Persona implements Serializable{
     private static final long serialVersionUID = 1L;
     

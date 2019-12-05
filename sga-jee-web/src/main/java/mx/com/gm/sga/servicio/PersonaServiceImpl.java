@@ -5,8 +5,10 @@
  */
 package mx.com.gm.sga.servicio;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import mx.com.gm.sga.datos.PersonaDAO;
 import mx.com.gm.sga.domain.Persona;
 
 /**
@@ -17,37 +19,42 @@ import mx.com.gm.sga.domain.Persona;
 @Stateless
 public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService{
 
+    /*
+    -- Se inyecta la capa de Datos
+    -- No se va acceder direcyamente desde esta implementacion sino se usara la
+    interface PersonaDao como puente
+    */
+    @Inject
+    private PersonaDAO personaDAO;
+    
     @Override
-    public ArrayList<Persona> listarPersonas() {
-        ArrayList<Persona> personas = new ArrayList<>();
-        personas.add(new Persona("Sebastian", "Quiroz", "se@hotmail.com", "555-55-55"));
-        personas.add(new Persona("Adriana", "Mora", "adri@gmail.com", "777-777-77"));
-        return personas;
+    public List<Persona> listarPersonas() {
+        return personaDAO.findAllPersonas();
     }
 
     @Override
     public Persona encontrarPersonaPorId(Persona persona) {
-        return null;
+        return personaDAO.findPersonaById(persona);
     }
 
     @Override
     public Persona encontrarPersonaPorEmail(Persona persona) {
-        return null;
+        return personaDAO.findPersonaByEmail(persona);
     }
 
     @Override
     public void registrarPersona(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personaDAO.insertPersona(persona);
     }
 
     @Override
     public void modificarPersona(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personaDAO.updatePersona(persona);
     }
 
     @Override
     public void eliminarPersona(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personaDAO.deletePersona(persona);
     }
     
 }
