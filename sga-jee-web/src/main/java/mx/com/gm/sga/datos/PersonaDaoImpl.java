@@ -59,6 +59,7 @@ public class PersonaDaoImpl implements PersonaDAO{
 
     @Override
     public void deletePersona(Persona persona) {
+        //Verificar si funciona correctamente si no corregir v 28
         em.merge(persona);
         em.remove(persona);
     }
