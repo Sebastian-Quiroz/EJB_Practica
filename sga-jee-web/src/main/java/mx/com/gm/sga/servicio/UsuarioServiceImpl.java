@@ -17,7 +17,7 @@ import mx.com.gm.sga.domain.Usuario;
  */
 //convierte el JB a un EJB sin estado, esto permite que se comunique con JPA
 @Stateless
-public class UsuarioServiceImpl implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService, UsuarioServiceRemote{
     
     //Usamos CDI para inyectar desde nuestro patron de diseño DAO
     //De esta manera usamos JPA mediante la capa DAO
